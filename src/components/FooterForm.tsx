@@ -1,5 +1,12 @@
 import { useFieldArray, useFormContext } from "react-hook-form";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Checkbox,
+  FormControlLabel,
+  TextField,
+  Typography,
+} from "@mui/material";
 import type { FormData } from "../configs/formFields";
 
 export const FooterForm = () => {
@@ -22,7 +29,12 @@ export const FooterForm = () => {
           fullWidth
           margin="normal"
         />
-        <Typography variant="h6" mt={2}>
+
+        <FormControlLabel
+          control={<Checkbox {...register("footer.social_link")} />}
+          label="Show social link"
+        />
+        <Typography variant="h6" mt={2} mb={2}>
           Footer Links
         </Typography>
         {footerLinks.fields.map((item, index) => (
@@ -44,6 +56,7 @@ export const FooterForm = () => {
             </Button>
           </Box>
         ))}
+
         <Button
           onClick={() => footerLinks.append({ href: "", label: "" })}
           variant="text"

@@ -4,6 +4,7 @@ import { defaultSectionValues, sectionTypes } from "../configs/formFields";
 import type { SectionType } from "../configs/formFields";
 import type { FormData } from "../configs/formFields";
 import { FeatureItemsForm } from "./FeatureItemsForm";
+import { FAQItemsForm } from "./FAQItemsForm";
 
 export const SectionsForm = () => {
   const { control, register, watch } = useFormContext<FormData>();
@@ -74,10 +75,13 @@ export const SectionsForm = () => {
                 label="Content"
                 {...register(`sections.${index}.content`)}
                 margin="normal"
+                multiline
+                minRows={4}
               />
             )}
 
             {type === "features" && <FeatureItemsForm sectionIndex={index} />}
+            {type === "faq" && <FAQItemsForm sectionIndex={index} />}
 
             <Button
               variant="outlined"

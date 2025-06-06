@@ -3,16 +3,12 @@ import { useFieldArray, useFormContext } from "react-hook-form";
 
 import type { FormData } from "../configs/formFields";
 
-export const FeatureItemsForm = ({
-  sectionIndex,
-}: {
-  sectionIndex: number;
-}) => {
+export const FAQItemsForm = ({ sectionIndex }: { sectionIndex: number }) => {
   const { control, register } = useFormContext<FormData>();
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: `sections.${sectionIndex}.items2` as const,
+    name: `sections.${sectionIndex}.items` as const,
   });
 
   return (
@@ -34,19 +30,13 @@ export const FeatureItemsForm = ({
           <TextField
             label="Title"
             {...register(
-              `sections.${sectionIndex}.items2.${featureIndex}.title`
+              `sections.${sectionIndex}.items.${featureIndex}.answer`
             )}
           />
           <TextField
             label="Content"
             {...register(
-              `sections.${sectionIndex}.items2.${featureIndex}.content`
-            )}
-          />
-          <TextField
-            label="Image URL"
-            {...register(
-              `sections.${sectionIndex}.items2.${featureIndex}.image`
+              `sections.${sectionIndex}.items.${featureIndex}.question`
             )}
           />
           <Button
@@ -54,16 +44,16 @@ export const FeatureItemsForm = ({
             variant="outlined"
             color="error"
           >
-            Remove Feature
+            Remove Question
           </Button>
         </Box>
       ))}
 
       <Button
-        onClick={() => append({ title: "", content: "", image: "" })}
+        onClick={() => append({ answer: "", question: "" })}
         variant="outlined"
       >
-        + Add Feature Item
+        + Add Question
       </Button>
     </Box>
   );
