@@ -5,6 +5,8 @@ import type { SectionType } from "../configs/formFields";
 import type { FormData } from "../configs/formFields";
 import { FeatureItemsForm } from "./FeatureItemsForm";
 import { FAQItemsForm } from "./FAQItemsForm";
+import { GalleryItemsForm } from "./GalleryItemsForm";
+import { ReviewsItemsForm } from "./ReviewsItemsForm";
 
 export const SectionsForm = () => {
   const { control, register, watch } = useFormContext<FormData>();
@@ -48,14 +50,12 @@ export const SectionsForm = () => {
             <Typography variant="subtitle1">
               {type.toUpperCase()} секція
             </Typography>
-
             <TextField
               fullWidth
               label="ID"
               {...register(`sections.${index}.id`)}
               margin="normal"
             />
-
             <TextField
               fullWidth
               label="Title"
@@ -68,7 +68,6 @@ export const SectionsForm = () => {
               {...register(`sections.${index}.subtitle`)}
               margin="normal"
             />
-
             {type === "about" && (
               <TextField
                 fullWidth
@@ -79,8 +78,9 @@ export const SectionsForm = () => {
                 minRows={4}
               />
             )}
-
             {type === "features" && <FeatureItemsForm sectionIndex={index} />}
+            {type === "gallery" && <GalleryItemsForm sectionIndex={index} />}
+            {type === "reviews" && <ReviewsItemsForm sectionIndex={index} />}
             {type === "faq" && <FAQItemsForm sectionIndex={index} />}
 
             <Button

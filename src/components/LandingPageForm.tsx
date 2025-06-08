@@ -1,6 +1,10 @@
 import { useForm, FormProvider } from "react-hook-form";
 import { Box, Button, TextField, Typography } from "@mui/material";
-import { defaultHeader, defaultFooter } from "../configs/formFields";
+import {
+  defaultHeader,
+  defaultFooter,
+  defaultMain,
+} from "../configs/formFields";
 import type { SectionType } from "../configs/formFields";
 
 import { HeaderForm } from "./HeaderForm";
@@ -19,8 +23,11 @@ type FormValues = {
 export default function LandingPageForm() {
   const methods = useForm({
     defaultValues: {
-      name: "",
-      description: "",
+      name: defaultMain.name,
+      description: defaultMain.description,
+      base_font_family: defaultMain.base_font_family,
+      fonts: defaultMain.fonts,
+      color_vars: defaultMain.color_vars,
       header: defaultHeader,
       footer: defaultFooter,
       sections: [],
@@ -51,6 +58,28 @@ export default function LandingPageForm() {
           {...register("description")}
           fullWidth
           margin="normal"
+        />
+        <TextField
+          label="Base font family"
+          {...register("base_font_family")}
+          fullWidth
+          margin="normal"
+        />
+        <TextField
+          label="Fonts"
+          {...register("fonts")}
+          fullWidth
+          margin="normal"
+          multiline
+          minRows={4}
+        />
+        <TextField
+          label="Color variables"
+          {...register("color_vars")}
+          fullWidth
+          margin="normal"
+          multiline
+          minRows={4}
         />
 
         <HeaderForm />

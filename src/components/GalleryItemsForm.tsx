@@ -3,18 +3,22 @@ import { useFieldArray, useFormContext } from "react-hook-form";
 
 import type { FormData } from "../configs/formFields";
 
-export const FAQItemsForm = ({ sectionIndex }: { sectionIndex: number }) => {
+export const GalleryItemsForm = ({
+  sectionIndex,
+}: {
+  sectionIndex: number;
+}) => {
   const { control, register } = useFormContext<FormData>();
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: `sections.${sectionIndex}.faqItems` as const,
+    name: `sections.${sectionIndex}.galleryItems` as const,
   });
 
   return (
     <Box mt={2}>
       <Typography variant="subtitle2" mb={1}>
-        Feature Items
+        Gallery Items
       </Typography>
       {fields.map((field, featureIndex) => (
         <Box
@@ -30,13 +34,13 @@ export const FAQItemsForm = ({ sectionIndex }: { sectionIndex: number }) => {
           <TextField
             label="Title"
             {...register(
-              `sections.${sectionIndex}.faqItems.${featureIndex}.answer`
+              `sections.${sectionIndex}.galleryItems.${featureIndex}.title`
             )}
           />
           <TextField
-            label="Content"
+            label="Image URL"
             {...register(
-              `sections.${sectionIndex}.faqItems.${featureIndex}.question`
+              `sections.${sectionIndex}.galleryItems.${featureIndex}.image`
             )}
           />
           <Button
@@ -44,16 +48,16 @@ export const FAQItemsForm = ({ sectionIndex }: { sectionIndex: number }) => {
             variant="outlined"
             color="error"
           >
-            Remove Question
+            Remove item
           </Button>
         </Box>
       ))}
 
       <Button
-        onClick={() => append({ answer: "", question: "" })}
+        onClick={() => append({ title: "", image: "" })}
         variant="outlined"
       >
-        + Add Question
+        + Add item
       </Button>
     </Box>
   );

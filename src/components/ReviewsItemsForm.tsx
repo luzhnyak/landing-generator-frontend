@@ -3,20 +3,24 @@ import { useFieldArray, useFormContext } from "react-hook-form";
 
 import type { FormData } from "../configs/formFields";
 
-export const FAQItemsForm = ({ sectionIndex }: { sectionIndex: number }) => {
+export const ReviewsItemsForm = ({
+  sectionIndex,
+}: {
+  sectionIndex: number;
+}) => {
   const { control, register } = useFormContext<FormData>();
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: `sections.${sectionIndex}.faqItems` as const,
+    name: `sections.${sectionIndex}.reviewItems` as const,
   });
 
   return (
     <Box mt={2}>
       <Typography variant="subtitle2" mb={1}>
-        Feature Items
+        Reviews Items
       </Typography>
-      {fields.map((field, featureIndex) => (
+      {fields.map((field, reviewIndex) => (
         <Box
           key={field.id}
           display="flex"
@@ -28,32 +32,38 @@ export const FAQItemsForm = ({ sectionIndex }: { sectionIndex: number }) => {
           p={2}
         >
           <TextField
-            label="Title"
+            label="User"
             {...register(
-              `sections.${sectionIndex}.faqItems.${featureIndex}.answer`
+              `sections.${sectionIndex}.reviewItems.${reviewIndex}.user`
             )}
           />
           <TextField
-            label="Content"
+            label="Message"
             {...register(
-              `sections.${sectionIndex}.faqItems.${featureIndex}.question`
+              `sections.${sectionIndex}.reviewItems.${reviewIndex}.message`
+            )}
+          />
+          <TextField
+            label="Avatar"
+            {...register(
+              `sections.${sectionIndex}.reviewItems.${reviewIndex}.avatar`
             )}
           />
           <Button
-            onClick={() => remove(featureIndex)}
+            onClick={() => remove(reviewIndex)}
             variant="outlined"
             color="error"
           >
-            Remove Question
+            Remove Review
           </Button>
         </Box>
       ))}
 
       <Button
-        onClick={() => append({ answer: "", question: "" })}
+        onClick={() => append({ user: "", message: "", avatar: "" })}
         variant="outlined"
       >
-        + Add Question
+        + Add Review Item
       </Button>
     </Box>
   );

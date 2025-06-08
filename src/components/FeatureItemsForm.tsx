@@ -12,7 +12,7 @@ export const FeatureItemsForm = ({
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: `sections.${sectionIndex}.items2` as const,
+    name: `sections.${sectionIndex}.featureItems` as const,
   });
 
   return (
@@ -34,19 +34,19 @@ export const FeatureItemsForm = ({
           <TextField
             label="Title"
             {...register(
-              `sections.${sectionIndex}.items2.${featureIndex}.title`
+              `sections.${sectionIndex}.featureItems.${featureIndex}.title`
             )}
           />
           <TextField
             label="Content"
             {...register(
-              `sections.${sectionIndex}.items2.${featureIndex}.content`
+              `sections.${sectionIndex}.featureItems.${featureIndex}.content`
             )}
           />
           <TextField
             label="Image URL"
             {...register(
-              `sections.${sectionIndex}.items2.${featureIndex}.image`
+              `sections.${sectionIndex}.featureItems.${featureIndex}.image`
             )}
           />
           <Button

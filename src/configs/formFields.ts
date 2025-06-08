@@ -23,7 +23,7 @@ export type FeatureItem = {
 
 export type FeaturesSection = BaseSection & {
   type: "features";
-  items2: FeatureItem[];
+  featureItems: FeatureItem[];
 };
 
 export type GalleryItem = {
@@ -33,7 +33,7 @@ export type GalleryItem = {
 
 export type GallerySection = BaseSection & {
   type: "gallery";
-  items: GalleryItem[];
+  galleryItems: GalleryItem[];
 };
 
 export type ReviewItem = {
@@ -44,7 +44,7 @@ export type ReviewItem = {
 
 export type ReviewsSection = BaseSection & {
   type: "reviews";
-  items: ReviewItem[];
+  reviewItems: ReviewItem[];
 };
 
 export type FAQItem = {
@@ -54,15 +54,15 @@ export type FAQItem = {
 
 export type FAQSection = BaseSection & {
   type: "faq";
-  items: FAQItem[];
+  faqItems: FAQItem[];
 };
 
 export type SectionType =
   | HeroSection
   | AboutSection
-  | FeaturesSection
   | GallerySection
   | ReviewsSection
+  | FeaturesSection
   | FAQSection;
 
 // Тип посилання
@@ -80,6 +80,7 @@ export type HeaderType = {
 };
 
 export type FooterType = {
+  type: "footer";
   content: string;
   links: LinkItem[];
   social_link: boolean;
@@ -89,6 +90,9 @@ export type FooterType = {
 export type FormData = {
   name: string;
   description: string;
+  fonts: string;
+  base_font_family: string;
+  color_vars: string;
   header: HeaderType;
   footer: FooterType;
   sections: SectionType[];
@@ -103,6 +107,21 @@ export const sectionTypes: SectionType["type"][] = [
   "reviews",
   "faq",
 ];
+
+export const defaultMain = {
+  type: "main",
+  name: "My Landing Page",
+  description: "This is a sample landing page for your business or product",
+  base_font_family: '"Inter", sans-serif',
+  fonts: `<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"  rel="stylesheet" />`,
+  color_vars: `--color-background-primary: #190e0c;
+--color-background-secondary: #0f0000;
+--color-text-primary: #ffffff;
+--color-text-secondary: #be8d31;
+--color-text-accent: #be8d31;`,
+};
 
 // Початкові значення для секцій
 export const defaultSectionValues: Record<SectionType["type"], SectionType> = {
@@ -125,7 +144,7 @@ export const defaultSectionValues: Record<SectionType["type"], SectionType> = {
     type: "features",
     title: "Features Title",
     subtitle: "Features Subtitle",
-    items2: [
+    featureItems: [
       {
         title: "Feature 1",
         content: "Feature 1 content",
@@ -138,21 +157,21 @@ export const defaultSectionValues: Record<SectionType["type"], SectionType> = {
     type: "gallery",
     title: "Gallery Title",
     subtitle: "Gallery Subtitle",
-    items: [],
+    galleryItems: [],
   },
   reviews: {
     id: "reviews",
     type: "reviews",
     title: "Reviews Title",
     subtitle: "Reviews Subtitle",
-    items: [],
+    reviewItems: [],
   },
   faq: {
     id: "faq",
     type: "faq",
     title: "FAQ Title",
     subtitle: "FAQ Subtitle",
-    items: [
+    faqItems: [
       {
         question: "Question 1",
         answer: "Answer 1",
@@ -166,6 +185,7 @@ export const defaultSectionValues: Record<SectionType["type"], SectionType> = {
 };
 
 export const defaultHeader = {
+  type: "header",
   logoUrl: "",
   links: [
     { href: "/", label: "Home" },
@@ -178,6 +198,7 @@ export const defaultHeader = {
 };
 
 export const defaultFooter = {
+  type: "footer",
   content: "© 2025 Your Company. All rights reserved",
   links: [
     { href: "./privacy-policy.html", label: "Privacy Policy" },
