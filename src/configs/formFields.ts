@@ -89,10 +89,15 @@ export type FooterType = {
 // Повна форма
 export type FormData = {
   name: string;
+  title: string;
   description: string;
-  fonts: string;
+  keywords: string;
+  domain: string;
+  author: string;
+  email: string;
   base_font_family: string;
   color_vars: string;
+  fonts_link: string;
   header: HeaderType;
   footer: FooterType;
   sections: SectionType[];
@@ -110,10 +115,15 @@ export const sectionTypes: SectionType["type"][] = [
 
 export const defaultMain = {
   type: "main",
-  name: "My Landing Page",
+  name: "MySite",
+  title: "My Landing Page",
   description: "This is a sample landing page for your business or product",
+  keywords: "landing page, business, product",
+  domain: "www.example.com",
+  author: "Your Name",
+  email: "your@email.com",
   base_font_family: '"Inter", sans-serif',
-  fonts: `<link rel="preconnect" href="https://fonts.googleapis.com" />
+  fonts_link: `<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"  rel="stylesheet" />`,
   color_vars: `--color-background-primary: #190e0c;
