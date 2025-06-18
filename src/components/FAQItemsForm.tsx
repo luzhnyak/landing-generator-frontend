@@ -34,7 +34,7 @@ export const FAQItemsForm = ({ sectionIndex }: { sectionIndex: number }) => {
             )}
           />
           <TextField
-            label="Content"
+            label="Text"
             {...register(
               `sections.${sectionIndex}.faqItems.${featureIndex}.question`
             )}

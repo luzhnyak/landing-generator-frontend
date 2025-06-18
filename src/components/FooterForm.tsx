@@ -24,8 +24,8 @@ export const FooterForm = () => {
       </Typography>
       <Box p={2} border="1px solid #ccc" borderRadius={2} mb={2}>
         <TextField
-          label="Footer Content"
-          {...register("footer.content")}
+          label="Footer Text"
+          {...register("footer.text")}
           fullWidth
           margin="normal"
         />

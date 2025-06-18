@@ -11,6 +11,7 @@ import { HeaderForm } from "./HeaderForm";
 import { FooterForm } from "./FooterForm";
 import { SectionsForm } from "./SectionsForm";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 type FormValues = {
   name: string;
@@ -45,6 +46,7 @@ export default function LandingPageForm() {
       footer: defaultFooter,
       sections: [],
     },
+    shouldUnregister: true,
   });
 
   const { register, handleSubmit } = methods;
@@ -57,16 +59,15 @@ export default function LandingPageForm() {
         data,
         {
           headers: {
-            "Content-Type": "application/json",
+            "Text-Type": "application/json",
           },
         }
       );
       console.log("Success:", response.data);
-      alert("Форму надіслано успішно!");
+      toast.success("Форму надіслано успішно!");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      console.error("Error:", error.response?.data || error.message);
-      alert("Помилка при надсиланні форми");
+      toast.error(error.response?.data || error.message);
     }
   };
 

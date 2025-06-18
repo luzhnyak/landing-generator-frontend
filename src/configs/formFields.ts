@@ -11,13 +11,13 @@ export type HeroSection = BaseSection & {
 
 export type AboutSection = BaseSection & {
   type: "about";
-  content: string;
+  text: string;
   image: string;
 };
 
 export type FeatureItem = {
   title: string;
-  content: string;
+  text: string;
   image: string;
 };
 
@@ -81,7 +81,7 @@ export type HeaderType = {
 
 export type FooterType = {
   type: "footer";
-  content: string;
+  text: string;
   links: LinkItem[];
   social_link: boolean;
 };
@@ -146,7 +146,7 @@ export const defaultSectionValues: Record<SectionType["type"], SectionType> = {
     type: "about",
     title: "About Title",
     subtitle: "About Subtitle",
-    content: "About content",
+    text: "About text",
     image: "",
   },
   features: {
@@ -157,8 +157,8 @@ export const defaultSectionValues: Record<SectionType["type"], SectionType> = {
     featureItems: [
       {
         title: "Feature 1",
-        content: "Feature 1 content",
-        image: "",
+        text: "Feature 1 text",
+        image: "/img/features-1.png",
       },
     ],
   },
@@ -209,7 +209,7 @@ export const defaultHeader = {
 
 export const defaultFooter = {
   type: "footer",
-  content: "© 2025 Your Company. All rights reserved",
+  text: "© 2025 Your Company. All rights reserved",
   links: [
     { href: "./privacy-policy.html", label: "Privacy Policy" },
     { href: "./terms-conditions.html", label: "Terms & Conditions" },

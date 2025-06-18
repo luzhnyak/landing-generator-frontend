@@ -1,18 +1,17 @@
-import { Box, Button, TextField, Typography } from "@mui/material";
-import { useFieldArray, useFormContext } from "react-hook-form";
-
-import type { FormData } from "../configs/formFields";
+// FeatureItemsForm.tsx
+import { Box, Button, Typography } from "@mui/material";
+import { useFormContext, useFieldArray } from "react-hook-form";
+import { FeatureItem } from "./FeatureItem";
 
 export const FeatureItemsForm = ({
   sectionIndex,
 }: {
   sectionIndex: number;
 }) => {
-  const { control, register } = useFormContext<FormData>();
-
+  const { control } = useFormContext();
   const { fields, append, remove } = useFieldArray({
     control,
-    name: `sections.${sectionIndex}.featureItems` as const,
+    name: `sections.${sectionIndex}.featureItems`,
   });
 
   return (
@@ -20,47 +19,24 @@ export const FeatureItemsForm = ({
       <Typography variant="subtitle2" mb={1}>
         Feature Items
       </Typography>
+
       {fields.map((field, featureIndex) => (
-        <Box
+        <FeatureItem
           key={field.id}
-          display="flex"
-          flexDirection="column"
-          gap={2}
-          mb={2}
-          border="1px solid #ccc"
-          borderRadius={2}
-          p={2}
-        >
-          <TextField
-            label="Title"
-            {...register(
-              `sections.${sectionIndex}.featureItems.${featureIndex}.title`
-            )}
-          />
-          <TextField
-            label="Content"
-            {...register(
-              `sections.${sectionIndex}.featureItems.${featureIndex}.content`
-            )}
-          />
-          <TextField
-            label="Image URL"
-            {...register(
-              `sections.${sectionIndex}.featureItems.${featureIndex}.image`
-            )}
-          />
-          <Button
-            onClick={() => remove(featureIndex)}
-            variant="outlined"
-            color="error"
-          >
-            Remove Feature
-          </Button>
-        </Box>
+          sectionIndex={sectionIndex}
+          featureIndex={featureIndex}
+          onRemove={() => remove(featureIndex)}
+        />
       ))}
 
       <Button
-        onClick={() => append({ title: "", content: "", image: "" })}
+        onClick={() =>
+          append({
+            title: "",
+            text: "",
+            image: `/img/features-${fields.length + 1}.png`,
+          })
+        }
         variant="outlined"
       >
         + Add Feature Item
