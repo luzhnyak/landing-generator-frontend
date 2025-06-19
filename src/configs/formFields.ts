@@ -28,6 +28,7 @@ export type FeaturesSection = BaseSection & {
 
 export type GalleryItem = {
   title: string;
+  text: string;
   image: string;
 };
 
@@ -61,7 +62,6 @@ export type SectionType =
   | HeroSection
   | AboutSection
   | GallerySection
-  | ReviewsSection
   | FeaturesSection
   | FAQSection;
 
@@ -109,7 +109,6 @@ export const sectionTypes: SectionType["type"][] = [
   "about",
   "features",
   "gallery",
-  "reviews",
   "faq",
 ];
 
@@ -169,13 +168,13 @@ export const defaultSectionValues: Record<SectionType["type"], SectionType> = {
     subtitle: "Gallery Subtitle",
     galleryItems: [],
   },
-  reviews: {
-    id: "reviews",
-    type: "reviews",
-    title: "Reviews Title",
-    subtitle: "Reviews Subtitle",
-    reviewItems: [],
-  },
+  // reviews: {
+  //   id: "reviews",
+  //   type: "reviews",
+  //   title: "Reviews Title",
+  //   subtitle: "Reviews Subtitle",
+  //   reviewItems: [],
+  // },
   faq: {
     id: "faq",
     type: "faq",

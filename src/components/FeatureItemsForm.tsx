@@ -5,8 +5,10 @@ import { FeatureItem } from "./FeatureItem";
 
 export const FeatureItemsForm = ({
   sectionIndex,
+  sectionId,
 }: {
   sectionIndex: number;
+  sectionId: string;
 }) => {
   const { control } = useFormContext();
   const { fields, append, remove } = useFieldArray({
@@ -34,7 +36,7 @@ export const FeatureItemsForm = ({
           append({
             title: "",
             text: "",
-            image: `/img/features-${fields.length + 1}.png`,
+            image: `/img/${sectionId}-${fields.length + 1}.png`,
           })
         }
         variant="outlined"

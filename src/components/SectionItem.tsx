@@ -14,6 +14,7 @@ export const SectionItem = ({
 }) => {
   const { control, register } = useFormContext();
   const type = useWatch({ control, name: `sections.${index}.type` });
+  const sectionId = useWatch({ control, name: `sections.${index}.id` });
 
   return (
     <Box border="1px solid #ccc" borderRadius={2} p={2} mb={2}>
@@ -39,17 +40,29 @@ export const SectionItem = ({
       />
 
       {type === "about" && (
-        <TextField
-          fullWidth
-          label="Text"
-          {...register(`sections.${index}.text`)}
-          margin="normal"
-          multiline
-          minRows={4}
-        />
+        <>
+          <TextField
+            fullWidth
+            label="Text"
+            {...register(`sections.${index}.text`)}
+            margin="normal"
+            multiline
+            minRows={4}
+          />
+          <TextField
+            fullWidth
+            label="Image"
+            {...register(`sections.${index}.image`)}
+            margin="normal"
+          />
+        </>
       )}
-      {type === "features" && <FeatureItemsForm sectionIndex={index} />}
-      {type === "gallery" && <GalleryItemsForm sectionIndex={index} />}
+      {type === "features" && (
+        <FeatureItemsForm sectionIndex={index} sectionId={sectionId} />
+      )}
+      {type === "gallery" && (
+        <GalleryItemsForm sectionIndex={index} sectionId={sectionId} />
+      )}
       {type === "reviews" && <ReviewsItemsForm sectionIndex={index} />}
       {type === "faq" && <FAQItemsForm sectionIndex={index} />}
 

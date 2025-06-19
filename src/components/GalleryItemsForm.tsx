@@ -5,8 +5,10 @@ import type { FormData } from "../configs/formFields";
 
 export const GalleryItemsForm = ({
   sectionIndex,
+  sectionId,
 }: {
   sectionIndex: number;
+  sectionId: string;
 }) => {
   const { control, register } = useFormContext<FormData>();
 
@@ -38,6 +40,12 @@ export const GalleryItemsForm = ({
             )}
           />
           <TextField
+            label="Text"
+            {...register(
+              `sections.${sectionIndex}.galleryItems.${featureIndex}.text`
+            )}
+          />
+          <TextField
             label="Image URL"
             {...register(
               `sections.${sectionIndex}.galleryItems.${featureIndex}.image`
@@ -54,7 +62,13 @@ export const GalleryItemsForm = ({
       ))}
 
       <Button
-        onClick={() => append({ title: "", image: "" })}
+        onClick={() =>
+          append({
+            title: "",
+            text: "",
+            image: `/img/${sectionId}-${fields.length + 1}.png`,
+          })
+        }
         variant="outlined"
       >
         + Add item
