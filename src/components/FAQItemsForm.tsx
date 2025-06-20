@@ -28,15 +28,15 @@ export const FAQItemsForm = ({ sectionIndex }: { sectionIndex: number }) => {
           p={2}
         >
           <TextField
-            label="Title"
+            label="Question"
             {...register(
-              `sections.${sectionIndex}.faqItems.${featureIndex}.answer`
+              `sections.${sectionIndex}.faqItems.${featureIndex}.question`
             )}
           />
           <TextField
-            label="Text"
+            label="Answer"
             {...register(
-              `sections.${sectionIndex}.faqItems.${featureIndex}.question`
+              `sections.${sectionIndex}.faqItems.${featureIndex}.answer`
             )}
           />
           <Button

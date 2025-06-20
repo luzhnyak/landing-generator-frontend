@@ -12,6 +12,9 @@ import { FooterForm } from "./FooterForm";
 import { SectionsForm } from "./SectionsForm";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useEffect } from "react";
+
+const STORAGE_KEY = "landingPageFormData";
 
 type FormValues = {
   name: string;
@@ -30,24 +33,31 @@ type FormValues = {
 };
 
 export default function LandingPageForm() {
+  const savedData = localStorage.getItem(STORAGE_KEY);
+  const parsedData = savedData ? JSON.parse(savedData) : null;
+
+  const defaultFormValues: FormValues = {
+    name: defaultMain.name,
+    title: defaultMain.title,
+    description: defaultMain.description,
+    keywords: defaultMain.keywords,
+    domain: defaultMain.domain,
+    author: defaultMain.author,
+    email: defaultMain.email,
+    base_font_family: defaultMain.base_font_family,
+    fonts_link: defaultMain.fonts_link,
+    color_vars: defaultMain.color_vars,
+    header: defaultHeader,
+    footer: defaultFooter,
+    sections: [],
+  };
+
   const methods = useForm({
-    defaultValues: {
-      name: defaultMain.name,
-      title: defaultMain.title,
-      description: defaultMain.description,
-      keywords: defaultMain.keywords,
-      domain: defaultMain.domain,
-      author: defaultMain.author,
-      email: defaultMain.email,
-      base_font_family: defaultMain.base_font_family,
-      fonts_link: defaultMain.fonts_link,
-      color_vars: defaultMain.color_vars,
-      header: defaultHeader,
-      footer: defaultFooter,
-      sections: [],
-    },
+    defaultValues: parsedData || defaultFormValues,
     shouldUnregister: true,
   });
+
+  const { watch } = methods;
 
   const { register, handleSubmit } = methods;
 
@@ -70,6 +80,13 @@ export default function LandingPageForm() {
       toast.error(error.response?.data || error.message);
     }
   };
+
+  useEffect(() => {
+    const subscription = watch((value) => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(value));
+    });
+    return () => subscription.unsubscribe();
+  }, [watch]);
 
   return (
     <FormProvider {...methods}>
@@ -151,9 +168,22 @@ export default function LandingPageForm() {
           type="submit"
           variant="contained"
           color="primary"
-          sx={{ mt: 4 }}
+          sx={{ mt: 2 }}
         >
           Submit
+        </Button>
+
+        <Button
+          variant="outlined"
+          color="secondary"
+          sx={{ mt: 2, ml: 2 }}
+          onClick={() => {
+            localStorage.removeItem("landingPageFormData");
+            methods.reset(defaultFormValues);
+            toast.info("Форму очищено");
+          }}
+        >
+          Очистити форму
         </Button>
       </Box>
     </FormProvider>
