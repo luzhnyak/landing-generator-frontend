@@ -54,15 +54,17 @@ export default function LandingPageForm() {
 
   const methods = useForm({
     defaultValues: parsedData || defaultFormValues,
-    shouldUnregister: true,
+    shouldUnregister: false,
   });
+
+  console.log(parsedData);
 
   const { watch } = methods;
 
   const { register, handleSubmit } = methods;
 
   const onSubmit = async (data: FormValues) => {
-    console.log(JSON.stringify(data, null, 2));
+    // console.log(JSON.stringify(data, null, 2));
     try {
       const response = await axios.post(
         "http://localhost:3001/api/generate",
@@ -71,10 +73,17 @@ export default function LandingPageForm() {
           headers: {
             "Text-Type": "application/json",
           },
+          responseType: "blob",
         }
       );
       console.log("Success:", response.data);
       toast.success("Форму надіслано успішно!");
+
+      const blob = new Blob([response.data], { type: "application/zip" });
+      const link = document.createElement("a");
+      link.href = window.URL.createObjectURL(blob);
+      link.download = `${data.name}.zip`;
+      link.click();
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       toast.error(error.response?.data || error.message);
@@ -82,7 +91,10 @@ export default function LandingPageForm() {
   };
 
   useEffect(() => {
+    console.log("Watching form values");
+
     const subscription = watch((value) => {
+      console.log("values", value);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(value));
     });
     return () => subscription.unsubscribe();
