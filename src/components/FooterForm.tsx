@@ -52,7 +52,7 @@ export const FooterForm = () => {
               color="error"
               variant="outlined"
             >
-              Видалити
+              Remove
             </Button>
           </Box>
         ))}
@@ -61,7 +61,7 @@ export const FooterForm = () => {
           onClick={() => footerLinks.append({ href: "", label: "" })}
           variant="text"
         >
-          + Додати посилання
+          + Add Link
         </Button>
       </Box>
     </Box>
