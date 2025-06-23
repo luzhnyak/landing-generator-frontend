@@ -153,13 +153,7 @@ export const defaultSectionValues: Record<SectionType["type"], SectionType> = {
     type: "features",
     title: "Features Title",
     subtitle: "Features Subtitle",
-    featureItems: [
-      {
-        title: "Feature 1",
-        text: "Feature 1 text",
-        image: "/img/features-1.png",
-      },
-    ],
+    featureItems: [],
   },
   gallery: {
     id: "gallery",
@@ -180,16 +174,7 @@ export const defaultSectionValues: Record<SectionType["type"], SectionType> = {
     type: "faq",
     title: "FAQ Title",
     subtitle: "FAQ Subtitle",
-    faqItems: [
-      {
-        question: "Question 1",
-        answer: "Answer 1",
-      },
-      {
-        question: "Question 2",
-        answer: "Answer 2",
-      },
-    ],
+    faqItems: [],
   },
 };
 
