@@ -39,6 +39,17 @@ export const SectionItem = ({
         margin="normal"
       />
 
+      {type === "hero" && (
+        <>
+          <TextField
+            fullWidth
+            label="Image"
+            {...register(`sections.${index}.image`)}
+            margin="normal"
+          />
+        </>
+      )}
+
       {type === "about" && (
         <>
           <TextField
@@ -58,7 +69,17 @@ export const SectionItem = ({
         </>
       )}
       {type === "features" && (
-        <FeatureItemsForm sectionIndex={index} sectionId={sectionId} />
+        <>
+          <TextField
+            fullWidth
+            label="Text"
+            {...register(`sections.${index}.text`)}
+            margin="normal"
+            multiline
+            minRows={4}
+          />
+          <FeatureItemsForm sectionIndex={index} sectionId={sectionId} />
+        </>
       )}
       {type === "gallery" && (
         <GalleryItemsForm sectionIndex={index} sectionId={sectionId} />

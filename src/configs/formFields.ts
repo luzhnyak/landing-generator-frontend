@@ -7,6 +7,7 @@ export type BaseSection = {
 
 export type HeroSection = BaseSection & {
   type: "hero";
+  image: string;
 };
 
 export type AboutSection = BaseSection & {
@@ -23,6 +24,7 @@ export type FeatureItem = {
 
 export type FeaturesSection = BaseSection & {
   type: "features";
+  text: string;
   featureItems: FeatureItem[];
 };
 
@@ -138,13 +140,14 @@ export const defaultSectionValues: Record<SectionType["type"], SectionType> = {
     id: "hero",
     type: "hero",
     title: "Hero Title",
-    subtitle: "Hero Subtitle",
+    subtitle: "",
+    image: "",
   },
   about: {
     id: "about",
     type: "about",
     title: "About Title",
-    subtitle: "About Subtitle",
+    subtitle: "",
     text: "About text",
     image: "",
   },
@@ -152,7 +155,8 @@ export const defaultSectionValues: Record<SectionType["type"], SectionType> = {
     id: "features",
     type: "features",
     title: "Features Title",
-    subtitle: "Features Subtitle",
+    subtitle: "",
+    text: "",
     featureItems: [],
   },
   gallery: {
