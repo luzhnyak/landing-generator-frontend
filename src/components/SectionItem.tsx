@@ -2,7 +2,6 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import { useFormContext, useWatch } from "react-hook-form";
 import { FeatureItemsForm } from "./FeatureItemsForm";
 import { GalleryItemsForm } from "./GalleryItemsForm";
-import { ReviewsItemsForm } from "./ReviewsItemsForm";
 import { FAQItemsForm } from "./FAQItemsForm";
 
 export const SectionItem = ({
@@ -84,7 +83,6 @@ export const SectionItem = ({
       {type === "gallery" && (
         <GalleryItemsForm sectionIndex={index} sectionId={sectionId} />
       )}
-      {type === "reviews" && <ReviewsItemsForm sectionIndex={index} />}
       {type === "faq" && <FAQItemsForm sectionIndex={index} />}
 
       <Button
