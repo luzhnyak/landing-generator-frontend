@@ -134,12 +134,11 @@ export const defaultMain = {
 --color-text-accent: #be8d31;`,
 };
 
-// Початкові значення для секцій
 export const defaultSectionValues: Record<SectionType["type"], SectionType> = {
   hero: {
     id: "hero",
     type: "hero",
-    title: "Hero Title",
+    title: "",
     subtitle: "",
     image: "",
   },
@@ -148,7 +147,7 @@ export const defaultSectionValues: Record<SectionType["type"], SectionType> = {
     type: "about",
     title: "About Title",
     subtitle: "",
-    text: "About text",
+    text: "",
     image: "",
   },
   features: {
@@ -162,22 +161,15 @@ export const defaultSectionValues: Record<SectionType["type"], SectionType> = {
   gallery: {
     id: "gallery",
     type: "gallery",
-    title: "Gallery Title",
-    subtitle: "Gallery Subtitle",
+    title: "Gallery",
+    subtitle: "",
     galleryItems: [],
   },
-  // reviews: {
-  //   id: "reviews",
-  //   type: "reviews",
-  //   title: "Reviews Title",
-  //   subtitle: "Reviews Subtitle",
-  //   reviewItems: [],
-  // },
   faq: {
     id: "faq",
     type: "faq",
-    title: "FAQ Title",
-    subtitle: "FAQ Subtitle",
+    title: "FAQ",
+    subtitle: "",
     faqItems: [],
   },
 };

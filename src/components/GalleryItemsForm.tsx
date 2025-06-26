@@ -66,7 +66,7 @@ export const GalleryItemsForm = ({
           append({
             title: "",
             text: "",
-            image: `/img/${sectionId}-${fields.length + 1}.png`,
+            image: `/img/${sectionId}-${fields.length + 1}.jpg`,
           })
         }
         variant="outlined"
