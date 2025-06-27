@@ -23,6 +23,10 @@ export const SectionsForm = () => {
     <Box mb={4}>
       <Typography variant="h6">Sections</Typography>
 
+      {fields.map((field, index) => (
+        <MemoizedSectionItem key={field.id} index={index} onRemove={remove} />
+      ))}
+
       <Box display="flex" gap={2} my={2}>
         {sectionTypes.map((type) => (
           <Button
@@ -34,10 +38,6 @@ export const SectionsForm = () => {
           </Button>
         ))}
       </Box>
-
-      {fields.map((field, index) => (
-        <MemoizedSectionItem key={field.id} index={index} onRemove={remove} />
-      ))}
     </Box>
   );
 };

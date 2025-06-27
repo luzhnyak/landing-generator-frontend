@@ -81,7 +81,17 @@ export const SectionItem = ({
         </>
       )}
       {type === "gallery" && (
-        <GalleryItemsForm sectionIndex={index} sectionId={sectionId} />
+        <>
+          <TextField
+            fullWidth
+            label="Text"
+            {...register(`sections.${index}.text`)}
+            margin="normal"
+            multiline
+            minRows={4}
+          />
+          <GalleryItemsForm sectionIndex={index} sectionId={sectionId} />
+        </>
       )}
       {type === "faq" && <FAQItemsForm sectionIndex={index} />}
 

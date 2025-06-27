@@ -36,6 +36,7 @@ export type GalleryItem = {
 
 export type GallerySection = BaseSection & {
   type: "gallery";
+  text: string;
   galleryItems: GalleryItem[];
 };
 
@@ -163,6 +164,7 @@ export const defaultSectionValues: Record<SectionType["type"], SectionType> = {
     type: "gallery",
     title: "Gallery",
     subtitle: "",
+    text: "",
     galleryItems: [],
   },
   faq: {
