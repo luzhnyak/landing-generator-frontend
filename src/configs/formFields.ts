@@ -3,6 +3,7 @@ export type BaseSection = {
   type: string;
   title: string;
   subtitle: string;
+  background: boolean;
 };
 
 export type HeroSection = BaseSection & {
@@ -35,8 +36,12 @@ export type GalleryItem = {
 };
 
 export type GallerySection = BaseSection & {
-  type: "gallery";
+  type: "swiper";
   text: string;
+  navigation: boolean;
+  pagination: boolean;
+  effectCoverflow: boolean;
+  hideOnDesktop: boolean;
   galleryItems: GalleryItem[];
 };
 
@@ -58,6 +63,7 @@ export type FAQItem = {
 
 export type FAQSection = BaseSection & {
   type: "faq";
+  text: string;
   faqItems: FAQItem[];
 };
 
@@ -111,7 +117,7 @@ export const sectionTypes: SectionType["type"][] = [
   "hero",
   "about",
   "features",
-  "gallery",
+  "swiper",
   "faq",
 ];
 
@@ -141,6 +147,7 @@ export const defaultSectionValues: Record<SectionType["type"], SectionType> = {
     type: "hero",
     title: "",
     subtitle: "",
+    background: false,
     image: "",
   },
   about: {
@@ -148,6 +155,7 @@ export const defaultSectionValues: Record<SectionType["type"], SectionType> = {
     type: "about",
     title: "About Title",
     subtitle: "",
+    background: false,
     text: "",
     image: "",
   },
@@ -156,15 +164,21 @@ export const defaultSectionValues: Record<SectionType["type"], SectionType> = {
     type: "features",
     title: "Features Title",
     subtitle: "",
+    background: false,
     text: "",
     featureItems: [],
   },
-  gallery: {
+  swiper: {
     id: "gallery",
-    type: "gallery",
+    type: "swiper",
     title: "Gallery",
     subtitle: "",
+    background: false,
     text: "",
+    pagination: false,
+    navigation: false,
+    effectCoverflow: false,
+    hideOnDesktop: false,
     galleryItems: [],
   },
   faq: {
@@ -172,6 +186,8 @@ export const defaultSectionValues: Record<SectionType["type"], SectionType> = {
     type: "faq",
     title: "FAQ",
     subtitle: "",
+    background: false,
+    text: "",
     faqItems: [],
   },
 };
