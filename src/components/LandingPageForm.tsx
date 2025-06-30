@@ -16,6 +16,9 @@ import { useEffect } from "react";
 
 const STORAGE_KEY = "landingPageFormData";
 
+const baseURL =
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:3001/api";
+
 type FormValues = {
   name: string;
   title: string;
@@ -66,16 +69,12 @@ export default function LandingPageForm() {
   const onSubmit = async (data: FormValues) => {
     // console.log(JSON.stringify(data, null, 2));
     try {
-      const response = await axios.post(
-        "http://localhost:3001/api/generate",
-        data,
-        {
-          headers: {
-            "Text-Type": "application/json",
-          },
-          responseType: "blob",
-        }
-      );
+      const response = await axios.post(baseURL + "/generate", data, {
+        headers: {
+          "Text-Type": "application/json",
+        },
+        responseType: "blob",
+      });
       console.log("Success:", response.data);
       toast.success("Форму надіслано успішно!");
 
