@@ -134,11 +134,11 @@ export const defaultMain = {
   fonts_link: `<link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"  rel="stylesheet" />`,
-  color_vars: `--color-background-primary: #190e0c;
---color-background-secondary: #0f0000;
---color-text-primary: #ffffff;
---color-text-secondary: #be8d31;
---color-text-accent: #be8d31;`,
+  color_vars: `--color-background-primary: #f7f8f9;
+--color-background-secondary: #c4d9dd;
+--color-text-primary:#1f2327;
+--color-text-secondary:#1a1308;
+--color-text-accent: #a8c3a0;`,
 };
 
 export const defaultSectionValues: Record<SectionType["type"], SectionType> = {
