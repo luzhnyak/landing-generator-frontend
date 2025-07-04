@@ -43,7 +43,10 @@ export const HeaderForm = () => {
             </Button>
           </Box>
         ))}
-        <Button onClick={() => append({ href: "", label: "" })} variant="text">
+        <Button
+          onClick={() => append({ href: "/#", label: "" })}
+          variant="text"
+        >
           + Add Link
         </Button>
       </Box>
