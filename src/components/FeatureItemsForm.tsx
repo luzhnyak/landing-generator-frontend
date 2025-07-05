@@ -36,7 +36,7 @@ export const FeatureItemsForm = ({
           append({
             title: "",
             text: "",
-            image: `/img/${sectionId}-${fields.length + 1}.jpg`,
+            image: `/img/${sectionId}-${fields.length + 1}.png`,
           })
         }
         variant="outlined"
