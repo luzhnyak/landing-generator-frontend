@@ -14,6 +14,7 @@ export type HeroSection = BaseSection & {
 export type AboutSection = BaseSection & {
   type: "about";
   text: string;
+  ul: string;
   image: string;
 };
 
@@ -157,6 +158,7 @@ export const defaultSectionValues: Record<SectionType["type"], SectionType> = {
     subtitle: "",
     background: false,
     text: "",
+    ul: "",
     image: "",
   },
   features: {

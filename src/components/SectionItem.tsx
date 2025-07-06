@@ -74,6 +74,14 @@ export const SectionItem = ({
           />
           <TextField
             fullWidth
+            label="List"
+            {...register(`sections.${index}.ul`)}
+            margin="normal"
+            multiline
+            minRows={4}
+          />
+          <TextField
+            fullWidth
             label="Image"
             {...register(`sections.${index}.image`)}
             margin="normal"
