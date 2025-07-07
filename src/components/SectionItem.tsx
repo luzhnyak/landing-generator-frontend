@@ -3,9 +3,12 @@ import {
   Button,
   Checkbox,
   FormControlLabel,
+  IconButton,
+  InputAdornment,
   TextField,
   Typography,
 } from "@mui/material";
+import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 import { useFormContext, useWatch } from "react-hook-form";
 import { FeatureItemsForm } from "./FeatureItemsForm";
 import { GalleryItemsForm } from "./GalleryItemsForm";
@@ -18,9 +21,13 @@ export const SectionItem = ({
   index: number;
   onRemove: (index: number) => void;
 }) => {
-  const { control, register } = useFormContext();
+  const { control, register, setValue } = useFormContext();
   const type = useWatch({ control, name: `sections.${index}.type` });
   const sectionId = useWatch({ control, name: `sections.${index}.id` });
+
+  const handleSetImageValue = () => {
+    setValue(`sections.${index}.image`, `/img/${sectionId}.png`);
+  };
 
   return (
     <Box border="1px solid #ccc" borderRadius={2} p={2} mb={2}>
@@ -85,6 +92,25 @@ export const SectionItem = ({
             label="Image"
             {...register(`sections.${index}.image`)}
             margin="normal"
+          />
+          <TextField
+            label="Image URL"
+            {...register(`sections.${index}.image`)}
+            margin="normal"
+            slotProps={{
+              input: {
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton onClick={handleSetImageValue} edge="end">
+                      <AutoFixHighIcon />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              },
+              inputLabel: {
+                shrink: true,
+              },
+            }}
           />
         </>
       )}

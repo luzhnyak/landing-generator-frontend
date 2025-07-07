@@ -26,6 +26,7 @@ export const FeatureItemsForm = ({
         <FeatureItem
           key={field.id}
           sectionIndex={sectionIndex}
+          sectionId={sectionId}
           featureIndex={featureIndex}
           onRemove={() => remove(featureIndex)}
         />
@@ -36,7 +37,7 @@ export const FeatureItemsForm = ({
           append({
             title: "",
             text: "",
-            image: `/img/${sectionId}-${fields.length + 1}.png`,
+            image: ``,
           })
         }
         variant="outlined"

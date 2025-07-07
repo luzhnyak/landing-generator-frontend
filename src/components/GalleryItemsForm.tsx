@@ -1,4 +1,12 @@
-import { Box, Button, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  IconButton,
+  InputAdornment,
+  TextField,
+  Typography,
+} from "@mui/material";
+import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 import { useFieldArray, useFormContext } from "react-hook-form";
 
 import type { FormData } from "../configs/formFields";
@@ -10,19 +18,26 @@ export const GalleryItemsForm = ({
   sectionIndex: number;
   sectionId: string;
 }) => {
-  const { control, register } = useFormContext<FormData>();
+  const { control, register, setValue } = useFormContext<FormData>();
 
   const { fields, append, remove } = useFieldArray({
     control,
     name: `sections.${sectionIndex}.galleryItems` as const,
   });
 
+  const handleSetImageValue = (slideIndex: number) => {
+    setValue(
+      `sections.${sectionIndex}.galleryItems.${slideIndex}.image`,
+      `/img/${sectionId}-${slideIndex + 1}.png`
+    );
+  };
+
   return (
     <Box mt={2}>
       <Typography variant="subtitle2" mb={1}>
         Gallery Items
       </Typography>
-      {fields.map((field, featureIndex) => (
+      {fields.map((field, slideIndex) => (
         <Box
           key={field.id}
           display="flex"
@@ -36,23 +51,41 @@ export const GalleryItemsForm = ({
           <TextField
             label="Title"
             {...register(
-              `sections.${sectionIndex}.galleryItems.${featureIndex}.title`
+              `sections.${sectionIndex}.galleryItems.${slideIndex}.title`
             )}
           />
           <TextField
             label="Text"
             {...register(
-              `sections.${sectionIndex}.galleryItems.${featureIndex}.text`
+              `sections.${sectionIndex}.galleryItems.${slideIndex}.text`
             )}
           />
+
           <TextField
             label="Image URL"
             {...register(
-              `sections.${sectionIndex}.galleryItems.${featureIndex}.image`
+              `sections.${sectionIndex}.galleryItems.${slideIndex}.image`
             )}
+            slotProps={{
+              input: {
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={() => handleSetImageValue(slideIndex)}
+                      edge="end"
+                    >
+                      <AutoFixHighIcon />
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              },
+              inputLabel: {
+                shrink: true,
+              },
+            }}
           />
           <Button
-            onClick={() => remove(featureIndex)}
+            onClick={() => remove(slideIndex)}
             variant="outlined"
             color="error"
           >
@@ -66,7 +99,7 @@ export const GalleryItemsForm = ({
           append({
             title: "",
             text: "",
-            image: `/img/${sectionId}-${fields.length + 1}.jpg`,
+            image: ``,
           })
         }
         variant="outlined"
