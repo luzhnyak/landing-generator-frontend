@@ -89,11 +89,6 @@ export const SectionItem = ({
           />
           <TextField
             fullWidth
-            label="Image"
-            {...register(`sections.${index}.image`)}
-            margin="normal"
-          />
-          <TextField
             label="Image URL"
             {...register(`sections.${index}.image`)}
             margin="normal"
